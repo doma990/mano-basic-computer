@@ -1,5 +1,5 @@
 Team 130 — technical report
-Original control timings and equations; personal identifiers omitted.
+Original control timings and equations.
 
 LDA, STA, ISZ, BUN, ADD, DIV, XOR
 
