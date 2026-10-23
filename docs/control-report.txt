@@ -1,0 +1,133 @@
+Team 130 — technical report
+Original control timings and equations; personal identifiers omitted.
+
+LDA, STA, ISZ, BUN, ADD, DIV, XOR
+
+T0 : AR <- PC
+T1 : IR <- M[AR], PC <- PC + 1
+T2 : D0..D15 <- Decode IR(12-15), AR <- IR(4-11)
+
+XOR
+D0 T3 : DR <- M[AR]
+D0 T4 : AC <- DR XOR AC, SC <- 0
+
+ADD
+D1 T3 : DR <- M[AR]
+D1 T4 : AC <- AC + DR, E <- Cout, SC <- 0
+
+LDA
+D2 T3 : DR <- M[AR]
+D2 T4 : AC <- DR, SC <- 0
+
+STA
+D3 T3 : M[AR] <- AC, SC <- 0
+
+BUN
+D4 T3 : PC <- AR, SC <- 0
+
+DIV
+D5 T3 : DR <- M[AR]
+D5 T4 : TR <- AC
+D5 T5 : AC <- DR
+D5 T6 : DR <- TR
+D5 T7 : AC <- AC / DR, SC <- 0
+
+ISZ
+D6 T3 : DR <- M[AR]
+D6 T4 : DR <- DR + 1
+D6 T5 : M[AR] <- DR, if (DR = 0) then (PC <- PC + 1), SC <- 0
+
+------------- Control Signals ----------------
+
+#1 : Memory Write
+D3T3 + D6T5
+
+#2 : Memory Read
+T1 + T3(D0 + D1 + D2 + D5 + D6)
+
+#3 : LD AR
+T0 + T2
+
+#4 : INC AR
+Always 0
+
+#5 : CLR AR
+Always 0
+
+#6 : LD PC
+D4T3
+
+#7 : INC PC
+T1 + D6T5Q (Where Q is the output of NOR, its inputs are the splitted DR)
+
+#8 : CLR PC
+Always Zero
+
+#9 : LD DR
+T3(D0 + D1 + D2 + D5 + D6) + D5T6
+
+#10 : INC DR
+D6T4
+
+#11 : CLR DR
+Always Zero
+
+#12 : LD AC
+T4(D0 + D1 + D2) + D5(T5 + T7)
+
+#13 : INC AC
+Always Zero
+
+#14 : CLR AC
+Always Zero
+
+#15 : LD IR
+T1
+
+#16 : CLR IR
+Always Zero
+
+#17 : E Load
+D1T4
+
+#18 : LD TR
+D5T4
+
+#19 : INC TR
+ALWAYS ZERO
+
+#20 : CLR TR
+ALWAYS ZERO
+
+#21 : CLR SC
+T4(D0 + D1 + D2) + T3(D3 + D4) + D5T7 + D6T5
+
+#22 : CTR SC
+ALWAYS ONE
+
+#23 : LD SC
+ALWAYS ZERO
+
+#24 : ALU Selection lines
+  i)   C0 : T4(D0 + D2) + D5(T5 + T7)
+  ii)  C1 : T4(D0 + D1)
+  iii) C2 : D0T4 + D5T7
+
+#25 : Bus Selection lines
+  i)   S0 : T0 + T1 + T3(D0+D1+D2+D3+D5+D6) + D5(T4+T6)
+  ii)  S1 : T0 + T2 + D4T3 + D5T6
+  iii) S2 : T2 + D3T3 + D5(T4 + T6) + D6T5
+
+
+
+
+
+
+
+
+
+
+
+
+
+

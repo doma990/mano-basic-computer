@@ -1,0 +1,4 @@
+*.circ.bak
+*.bak
+.DS_Store
+Thumbs.db
