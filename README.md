@@ -108,14 +108,12 @@ C ← C + integer_divide(A, B)
 
 These are expected arithmetic results from the assignment. The final RAM words should be **A = `0065`** at `10`, **C = `0023`** at `12`, and **counter = `0000`** at `13` (all hex). ISZ skips BUN after the third iteration. The supplied image has zeros after the loop and no HLT instruction; continuing to tick executes those words, so stop manually at completion.
 
-## Files and credits
+## Credits
 
-- [`circuit/Mano-Basic-Computer.circ`](circuit/Mano-Basic-Computer.circ): the team's supplied final circuit, preserved byte-for-byte from `MS2 So Far (1).circ` under a clearer filename.
-- [`examples/loop-program.txt`](examples/loop-program.txt): the original `MemoryTestsTXT` image, unchanged.
-- [`docs/control-report.txt`](docs/control-report.txt): original technical report with the personal-information header omitted.
-- [Milestone 1 brief](docs/MS1Description.pdf) · [Milestone 2 brief](docs/MS2Description.pdf).
-- [`docs/images/`](docs/images/): direct Logisim image exports documenting the design rather than a completed simulation run.
+**Architecture:** M. Morris Mano, *Computer System Architecture*, Basic Computer organization and design.
 
-**Architecture reference:** M. Morris Mano, *Computer System Architecture*, Basic Computer organization and design. **Course:** CSEN/CSIS 402, German University in Cairo, Spring 2026; Dr. Milad Ghantous and Dr. Shereen Afifi. **Implementation:** Team 130, including Adam Ibrahim. This repository presents a team submission and does not assign individual ownership of specific circuit blocks.
+**Course:** CSEN/CSIS 402, German University in Cairo, Spring 2026; Dr. Milad Ghantous and Dr. Shereen Afifi.
 
-Assignment documents remain credited to their authors. No license grant is asserted for the team's work or course material. [Logisim documentation: memory images](https://www.cburch.com/logisim/docs/2.7/en/html/guide/mem/menu.html) · [Simulation controls](https://www.cburch.com/logisim/docs/2.7/en/html/guide/menu/simulate.html).
+**Implementation:** Team 130, including Adam Ibrahim.
+
+[Logisim documentation: memory images](https://www.cburch.com/logisim/docs/2.7/en/html/guide/mem/menu.html) · [Simulation controls](https://www.cburch.com/logisim/docs/2.7/en/html/guide/menu/simulate.html).
